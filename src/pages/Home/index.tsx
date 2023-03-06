@@ -1,3 +1,5 @@
+import './Home.module.scss'
+
 export function Home() {
-  return <div>Home</div>
+  return <div className="homeWrapper">Home</div>
 }
