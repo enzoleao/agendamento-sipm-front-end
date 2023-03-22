@@ -38,6 +38,7 @@ export function Agendados() {
               <th>Lotacao</th>
               <th>Polo</th>
               <th>Data</th>
+              <th>Horário</th>
             </tr>
           </thead>
           <tbody>
