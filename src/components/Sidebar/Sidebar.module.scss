@@ -1,0 +1,28 @@
+.sideBarContainer, .sideBarContainerActive {
+    background-color: #282957;
+    opacity: 0;
+    flex-direction: column;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    left: -100%;
+    height: 100%;
+    z-index: 1;
+    transition: 350ms;
+    .ulItensSidebar {
+        display: flex;
+        flex-direction: column;
+    }
+    .buttonCloseSidebar {
+        position: absolute;
+        top: 1rem;
+        right: 0.800rem;
+        height: 30px;
+        width: 30px;
+        cursor: pointer;
+    }
+}
+.sideBarContainerActive {
+    left: 0%;
+    opacity: 1;
+}
