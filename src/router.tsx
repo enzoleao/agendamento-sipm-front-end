@@ -14,7 +14,7 @@ export function Router() {
   return (
     <Routes>
       <Route
-        path="/"
+        path="/dashboard"
         element={
           <Private>
             <Home />

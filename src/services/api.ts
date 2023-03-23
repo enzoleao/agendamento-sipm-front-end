@@ -3,7 +3,7 @@ import { parseCookies } from 'nookies'
 
 const cookies = parseCookies()
 const api = axios.create({
-  baseURL: 'https://api-agendamento-pmpa.herokuapp.com',
+  baseURL: 'http://localhost:3001',
   headers: {
     'x-access-token': `${cookies['auth-token']}`,
     'Content-Type': 'application/json',

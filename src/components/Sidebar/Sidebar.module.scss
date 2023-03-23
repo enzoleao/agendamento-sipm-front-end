@@ -9,6 +9,10 @@
     height: 100%;
     z-index: 1;
     transition: 350ms;
+
+    @media (max-width: 700px){ 
+        height: 55rem;
+    }
     .ulItensSidebar {
         display: flex;
         flex-direction: column;

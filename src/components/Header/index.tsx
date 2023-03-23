@@ -4,7 +4,7 @@ import { TfiMenuAlt } from 'react-icons/tfi'
 import { useContexts } from '../../contexts/useContexts'
 import styles from './Header.module.scss'
 export function Header() {
-  const { setShowSideBar, showSideBar } = useContexts()
+  const { setShowSideBar, showSideBar, logout } = useContexts()
   const [locationModalUser, setLocationModalUser] = useState(null)
   const open = Boolean(locationModalUser)
 
@@ -47,9 +47,7 @@ export function Header() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={logout}>Logout</MenuItem>
       </Menu>
     </div>
   )

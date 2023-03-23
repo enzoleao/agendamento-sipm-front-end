@@ -11,6 +11,7 @@ export function AgendadosTable(props: any) {
   return (
     <>
       <DialogForm
+        polo={props.polo}
         id={props.id}
         name={props.name}
         data={props.data}
@@ -18,7 +19,10 @@ export function AgendadosTable(props: any) {
         open={open}
         setOpen={setOpen}
       />
-      <tr key={props.id}>
+      <tr
+        key={props.id}
+        className="bg-white font-medium  text-center border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+      >
         <td className="p-2 ">{props.name}</td>
         <td className="p-2 ">{props.cpf}</td>
         <td className="p-2 ">{props.patente}</td>
@@ -35,7 +39,7 @@ export function AgendadosTable(props: any) {
             }}
             className="mr-3"
           >
-            <FiSettings />
+            <FiSettings color="#282957" />
           </Button>
         </td>
       </tr>

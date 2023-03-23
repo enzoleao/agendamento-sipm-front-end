@@ -2,7 +2,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import api from '../services/api'
 import { useNavigate } from 'react-router-dom'
-import { setCookie, parseCookies } from 'nookies'
+import { setCookie, parseCookies, destroyCookie } from 'nookies'
 type signInType = {
   usuario: string
   password: string
@@ -17,6 +17,7 @@ type useContextType = {
   setShowSideBar: any
   componentToShowHome: any
   setComponentToShowHome: any
+  logout: any
 }
 export const Context = createContext({} as useContextType)
 
@@ -33,12 +34,14 @@ export function ContextProvider({ children }: any) {
     const verifyUser = async () => {
       if (cookiesVerify) {
         try {
-          const response = await api.get('verifytoken')
+          const response = await api.get('/verifytoken')
           if (response) {
             setIsAuthenticated(true)
-            navigate('/')
+            navigate('/dashboard')
           }
         } catch (err) {
+          alert('Sessao expirida, realizar login novamente')
+          navigate('/')
           console.log(err)
         }
       }
@@ -63,6 +66,11 @@ export function ContextProvider({ children }: any) {
       console.log(err)
     }
   }
+  const logout = () => {
+    destroyCookie(undefined, 'auth-token')
+    setIsAuthenticated(false)
+    navigate('/login')
+  }
   return (
     <Context.Provider
       value={{
@@ -73,6 +81,7 @@ export function ContextProvider({ children }: any) {
         setShowSideBar,
         componentToShowHome,
         setComponentToShowHome,
+        logout,
       }}
     >
       {children}

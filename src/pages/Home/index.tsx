@@ -32,7 +32,7 @@ export function Home() {
               case 'six':
                 return <Notices />
               default:
-                return 'one'
+                return <Agendados />
             }
           })()}
         </div>

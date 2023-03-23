@@ -42,14 +42,15 @@ export function Login() {
           </section>
           <section className={styles.rightSectionLogin}>
             <header>
+              <img src={logoDgp} className={styles.imageLoginMobile} alt="" />
               <h1>SIPM</h1>
               <h4>Serviço de Identificação Policial Militar</h4>
             </header>
             <form onSubmit={handleSubmit(handleSigIn)} action="">
               <TextField
                 {...register('usuario')}
-                label="Email"
-                placeholder="Insira seu email"
+                label="Usuário"
+                placeholder="Insira seu usuário"
                 variant="standard"
                 onClick={() => setEmailIconButtonColor('#1976D2')}
                 onBlur={() => setEmailIconButtonColor('#757575')}

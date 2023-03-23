@@ -5,6 +5,7 @@ import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
+import api from '../../../../services/api'
 
 export default function DialogForm(props: any) {
   const handleClose = () => {
@@ -12,19 +13,30 @@ export default function DialogForm(props: any) {
   }
   const [editValues, setEditValues] = useState({
     id: props.id,
-    name: props.name,
     data: props.data,
     horario: props.horario,
+    polo: props.polo,
   })
+  const handleEditItem = () => {
+    api
+      .put('/atualizaragendamento', {
+        id: editValues.id,
+        data: editValues.data,
+        horario: editValues.horario,
+        polo: props.polo,
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+
+    handleClose()
+  }
   const handleChangeValues = (value: any) => {
     setEditValues((prevValues) => ({
       ...prevValues,
       [value.target.id]: value.target.value,
     }))
   }
-  const fakeSubmit = () => {
-    console.log(editValues)
-  }
+
   return (
     <>
       <Dialog open={props.open} onClose={handleClose}>
@@ -44,7 +56,7 @@ export default function DialogForm(props: any) {
           <TextField
             autoFocus
             margin="dense"
-            id="valor"
+            id="data"
             label="Data"
             defaultValue={props.data}
             onChange={handleChangeValues}
@@ -55,7 +67,7 @@ export default function DialogForm(props: any) {
           <TextField
             autoFocus
             margin="dense"
-            id="codigo"
+            id="horario"
             label="Horario"
             defaultValue={props.horario}
             onChange={handleChangeValues}
@@ -71,7 +83,7 @@ export default function DialogForm(props: any) {
           <Button color="error" variant="outlined">
             Excluir
           </Button>
-          <Button onClick={fakeSubmit} color="success" variant="outlined">
+          <Button onClick={handleEditItem} color="success" variant="outlined">
             Salvar
           </Button>
         </DialogActions>

@@ -8,7 +8,10 @@
     .loginContainer {
         max-width: 820px;
         width: 100%;
-
+        @media (max-width: 700px){
+           width: 80%;
+           min-width: 360px;
+        }
         main {
             height: 32rem;
             display: flex;
@@ -17,10 +20,13 @@
             box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
             border-radius: 6px;
             .leftSectionLogin {
+
                 width: 100%;
-                
                 .imageLogin {
                     width: 100%;
+                }
+                @media (max-width: 700px){
+                    display: none;
                 }
             }
             .rightSectionLogin {
@@ -32,7 +38,16 @@
                 box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px;
                 border-radius: 25px 6px 6px 25px;
                 gap: 40px;
-                
+                .imageLoginMobile {
+                    position: relative;
+                    width: 60px;
+                    height: 60px;
+                    left: 150px;
+
+                    @media (min-width: 700px){
+                        display: none;
+                    }
+                }
                 header {
                     display: flex;
                     flex-direction: column;
@@ -56,6 +71,9 @@
                     .showPasswordIcon {
                         cursor: pointer;
                     }
+                }
+                @media (max-width: 700px){
+                    border-radius: 6px;
                 }
             }
         }
