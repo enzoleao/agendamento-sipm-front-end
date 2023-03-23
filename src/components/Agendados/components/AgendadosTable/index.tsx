@@ -21,7 +21,7 @@ export function AgendadosTable(props: any) {
       />
       <tr
         key={props.id}
-        className="bg-white font-medium  text-center border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        className="bg-white font-medium  text-center border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 pointer"
       >
         <td className="p-2 ">{props.name}</td>
         <td className="p-2 ">{props.cpf}</td>

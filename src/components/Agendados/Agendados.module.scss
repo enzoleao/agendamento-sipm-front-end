@@ -28,6 +28,7 @@
         }
         .headerFilterSection {
             display: flex;
+            width: 60%;
             align-items: center;
             font-family: 'Roboto';
             font-weight: 700;
@@ -51,6 +52,7 @@
         justify-content: space-between;
         .countPagesResults {
             margin-left: 40px;
+            color: #282957;
         }
         .buttonSectionFooter {
             display: flex;

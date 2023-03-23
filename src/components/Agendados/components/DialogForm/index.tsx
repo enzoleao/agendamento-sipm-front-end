@@ -12,10 +12,11 @@ export default function DialogForm(props: any) {
   const handleClose = () => {
     props.setOpen(false)
   }
+  const [horarioPoloChange, setHorarioPoloChange] = useState('')
   const [editValues, setEditValues] = useState({
     id: props.id,
     data: props.data,
-    horario: props.horario,
+    horario: horarioPoloChange,
     polo: props.polo,
   })
   const handleEditItem = () => {
@@ -23,7 +24,7 @@ export default function DialogForm(props: any) {
       .put('/atualizaragendamento', {
         id: editValues.id,
         data: editValues.data,
-        horario: editValues.horario,
+        horario: horarioPoloChange,
         polo: props.polo,
       })
       .then((res) => console.log(res))
@@ -73,17 +74,7 @@ export default function DialogForm(props: any) {
             fullWidth
             variant="standard"
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="horario"
-            label="Horario"
-            defaultValue={editValues.horario}
-            onChange={handleChangeValues}
-            type="tel"
-            fullWidth
-            variant="standard"
-          />
+
           <FormControl variant="standard" sx={{ minWidth: 120 }}>
             <InputLabel id="demo-simple-select-standard-label">
               Horário
@@ -91,8 +82,9 @@ export default function DialogForm(props: any) {
             <Select
               labelId="demo-simple-select-standard-label"
               id="horario"
-              value={props.horario}
-              onChange={handleChangeValues}
+              value={horarioPoloChange}
+              onChange={(e) => setHorarioPoloChange(e.target.value)}
+              defaultValue={props.horario}
               label="Horario"
             >
               <MenuItem value="9:15:00">9:15</MenuItem>
@@ -115,7 +107,7 @@ export default function DialogForm(props: any) {
           <Button variant="outlined" onClick={handleClose}>
             Cancel
           </Button>
-          <Button color="error" variant="outlined">
+          <Button onClick={handleDeleteItem} color="error" variant="outlined">
             Excluir
           </Button>
           <Button onClick={handleEditItem} color="success" variant="outlined">
