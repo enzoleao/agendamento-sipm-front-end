@@ -6,6 +6,7 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import api from '../../../../services/api'
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
 export default function DialogForm(props: any) {
   const handleClose = () => {
@@ -25,6 +26,14 @@ export default function DialogForm(props: any) {
         horario: editValues.horario,
         polo: props.polo,
       })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+
+    handleClose()
+  }
+  const handleDeleteItem = () => {
+    api
+      .delete(`/apagaragendamento/${editValues.id}`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err))
 
@@ -69,12 +78,38 @@ export default function DialogForm(props: any) {
             margin="dense"
             id="horario"
             label="Horario"
-            defaultValue={props.horario}
+            defaultValue={editValues.horario}
             onChange={handleChangeValues}
             type="tel"
             fullWidth
             variant="standard"
           />
+          <FormControl variant="standard" sx={{ minWidth: 120 }}>
+            <InputLabel id="demo-simple-select-standard-label">
+              Horário
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-standard-label"
+              id="horario"
+              value={props.horario}
+              onChange={handleChangeValues}
+              label="Horario"
+            >
+              <MenuItem value="9:15:00">9:15</MenuItem>
+              <MenuItem value="9:45:00">9:45</MenuItem>
+              <MenuItem value="10:15:00">10:15</MenuItem>
+              <MenuItem value="10:45:00">10:45</MenuItem>
+              <MenuItem value="11:15:00">11:15</MenuItem>
+              <MenuItem value="11:45:00">11:45</MenuItem>
+              <MenuItem value="12:15:00">12:15</MenuItem>
+              <MenuItem value="12:45:00">12:45</MenuItem>
+              <MenuItem value="14:15:00">14:15</MenuItem>
+              <MenuItem value="14:45:00">14:45</MenuItem>
+              <MenuItem value="15:15:00">15:15</MenuItem>
+              <MenuItem value="15:45:00">15:45</MenuItem>
+              <MenuItem value="16:15:00">16:15</MenuItem>
+            </Select>
+          </FormControl>
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={handleClose}>

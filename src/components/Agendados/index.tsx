@@ -3,6 +3,7 @@ import api from '../../services/api'
 import { AgendadosTable } from './components/AgendadosTable'
 import styles from './Agendados.module.scss'
 import {
+  Button,
   FormControl,
   Input,
   InputAdornment,
@@ -53,7 +54,7 @@ export function Agendados() {
   return (
     <div className={styles.agendadosContent}>
       <div className={styles.tableSection}>
-        <header>
+        <header className={styles.settingsHeader}>
           <section className={styles.headerFilterSection}>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
               <InputLabel id="demo-simple-select-standard-label">
@@ -88,6 +89,22 @@ export function Agendados() {
               />
             </FormControl>
           </section>
+
+          <Button
+            sx={{
+              height: '32px',
+              color: '#282957',
+              borderColor: '#282957',
+              ':hover': {
+                border: 'none',
+                backgroundColor: '#292963',
+                color: 'white',
+              },
+            }}
+            variant="outlined"
+          >
+            REMOVER AGENDAMENTOS POR DATA
+          </Button>
         </header>
         <div className={styles.divTableWithOverflow}>
           <table className="w-full text-sm text-left  rounded-md">

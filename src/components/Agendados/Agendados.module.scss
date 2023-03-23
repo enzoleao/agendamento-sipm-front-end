@@ -11,6 +11,14 @@
         min-height: 33rem;
         display: flex;
         flex-direction: column;
+
+        .settingsHeader {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+
+        }
         .divTableWithOverflow {
 
             @media (max-width: 700px) {
