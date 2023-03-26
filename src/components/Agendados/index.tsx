@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
 import api from '../../services/api'
-import { AgendadosTable } from './components/AgendadosTable'
 import styles from './Agendados.module.scss'
+import { useEffect, useState } from 'react'
+import { AgendadosTable } from './components/AgendadosTable'
 import {
   Button,
   FormControl,
@@ -12,6 +12,9 @@ import {
   Select,
 } from '@mui/material'
 import { RxMagnifyingGlass } from 'react-icons/rx'
+import { DialogFormToDeleteAll } from './components/DialogForm'
+import { TableBase } from '../TableBase'
+
 export function Agendados() {
   useEffect(() => {
     const getAllCpf = async () => {
@@ -29,6 +32,7 @@ export function Agendados() {
   const [currentPage, setCurrentPage] = useState(0)
   const [searchInput, setSearchInput] = useState('')
   const [filterType, setFilterType] = useState('cpf')
+  const [openModalToDeleteDates, setOpenModalToDeleteDates] = useState(false)
   /* ---- FILTER ---- */
   // eslint-disable-next-line array-callback-return
   const filterOption = agendados.filter((i) => {
@@ -45,12 +49,27 @@ export function Agendados() {
       return i.polo.startsWith(searchInput)
     }
   })
+
   /* ---- PAGINATION ---- */
   const itensPerPage = 8
   const startIndex = currentPage * itensPerPage
   const endIndex = startIndex + itensPerPage
   const pages = Math.ceil(filterOption.length / itensPerPage)
   const currentItens = filterOption.slice(startIndex, endIndex)
+
+  /* ---- HEADER INFORMATIONS --- */
+
+  const headerInfos = [
+    { name: 'nome' },
+    { name: 'cpf' },
+    { name: 'patente' },
+    { name: 'telefone' },
+    { name: 'modelo' },
+    { name: 'lotacao' },
+    { name: 'polo' },
+    { name: 'data' },
+    { name: 'horario' },
+  ]
   return (
     <div className={styles.agendadosContent}>
       <div className={styles.tableSection}>
@@ -101,67 +120,32 @@ export function Agendados() {
                 color: 'white',
               },
             }}
+            onClick={() => setOpenModalToDeleteDates(true)}
             variant="outlined"
           >
             REMOVER AGENDAMENTOS POR DATA
           </Button>
         </header>
-        <div className={styles.divTableWithOverflow}>
-          <table className="w-full text-sm text-left  rounded-md">
-            <thead className="text-xs uppercase bg-principal-color">
-              <tr className="text-start">
-                <th scope="col" className="px-6 py-3 text-red-300">
-                  Nome
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  CPF
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Patente
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Telefone
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Modelo
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Lotacao
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Polo
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Data
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Horário
-                </th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {typeof currentItens !== 'undefined' &&
-                currentItens.map((users) => {
-                  return (
-                    <AgendadosTable
-                      id={users.id}
-                      key={users.id}
-                      name={users.nome}
-                      cpf={users.rg}
-                      patente={users.patente}
-                      telefone={users.telefone}
-                      modelo={users.modelo}
-                      lotacao={users.lotacao}
-                      polo={users.polo}
-                      data={users.data}
-                      horario={users.horario}
-                    />
-                  )
-                })}
-            </tbody>
-          </table>
-        </div>
+        <TableBase rowsHeader={headerInfos}>
+          {typeof currentItens !== 'undefined' &&
+            currentItens.map((users) => {
+              return (
+                <AgendadosTable
+                  id={users.id}
+                  key={users.id}
+                  name={users.nome}
+                  cpf={users.rg}
+                  patente={users.patente}
+                  telefone={users.telefone}
+                  modelo={users.modelo}
+                  lotacao={users.lotacao}
+                  polo={users.polo}
+                  data={users.data}
+                  horario={users.horario}
+                />
+              )
+            })}
+        </TableBase>
       </div>
       <footer>
         <p className={styles.countPagesResults}>
@@ -183,6 +167,10 @@ export function Agendados() {
           </button>
         </div>
       </footer>
+      <DialogFormToDeleteAll
+        setOpen={setOpenModalToDeleteDates}
+        open={openModalToDeleteDates}
+      />
     </div>
   )
 }

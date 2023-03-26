@@ -4,42 +4,35 @@ import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
-import api from '../../../../services/api'
+import api from '../../../services/api'
 import { useState } from 'react'
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { BsTrash } from 'react-icons/bs'
 import { AiOutlineSave } from 'react-icons/ai'
 import { IoMdClose } from 'react-icons/io'
-import { AlertDialog, DialogConfirmToDeleteAll } from '../../../ConfirmDialog'
+import { AlertDialog } from '../../ConfirmDialog'
 
 export function DialogForm(props: any) {
   const handleClose = () => {
     props.setOpen(false)
   }
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false)
-  const [horarioPoloChange, setHorarioPoloChange] = useState('')
   const [editValues, setEditValues] = useState({
-    id: props.id,
-    data: props.data,
-    horario: horarioPoloChange,
-    polo: props.polo,
+    name: props.name,
   })
   const handleEditItem = () => {
     api
-      .put('/atualizaragendamento', {
-        id: editValues.id,
-        data: editValues.data,
-        horario: horarioPoloChange,
-        polo: props.polo,
+      .put('/atualizarportador', {
+        id: props.id,
+        name: editValues.name,
       })
-      .then((res) => console.log(res))
+      .then((res) => alert('Atualizado com sucesso'))
       .catch((err) => console.log(err.response.data.message))
 
     handleClose()
   }
   const handleDeleteItem = () => {
     api
-      .delete(`/apagaragendamento/${editValues.id}`)
+      .delete(`/deletarrggerado/${props.id}`)
       .then((res) => {
         alert('Deletado com sucesso')
       })
@@ -60,11 +53,11 @@ export function DialogForm(props: any) {
         <DialogTitle>Editar</DialogTitle>
         <DialogContent>
           <TextField
-            disabled
             autoFocus
             margin="dense"
-            label="Nome"
-            defaultValue={props.name}
+            label="RG"
+            disabled
+            defaultValue={props.rg}
             onChange={handleChangeValues}
             type="text"
             fullWidth
@@ -73,42 +66,14 @@ export function DialogForm(props: any) {
           <TextField
             autoFocus
             margin="dense"
-            id="data"
-            label="Data"
-            defaultValue={props.data}
+            label="Nome"
+            id="name"
+            defaultValue={props.name}
             onChange={handleChangeValues}
-            type="tel"
+            type="text"
             fullWidth
             variant="standard"
           />
-
-          <FormControl variant="standard" sx={{ minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-standard-label">
-              Horário
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-standard-label"
-              id="horario"
-              value={horarioPoloChange}
-              onChange={(e) => setHorarioPoloChange(e.target.value)}
-              defaultValue={props.horario}
-              label="Horario"
-            >
-              <MenuItem value="9:15:00">9:15</MenuItem>
-              <MenuItem value="9:45:00">9:45</MenuItem>
-              <MenuItem value="10:15:00">10:15</MenuItem>
-              <MenuItem value="10:45:00">10:45</MenuItem>
-              <MenuItem value="11:15:00">11:15</MenuItem>
-              <MenuItem value="11:45:00">11:45</MenuItem>
-              <MenuItem value="12:15:00">12:15</MenuItem>
-              <MenuItem value="12:45:00">12:45</MenuItem>
-              <MenuItem value="14:15:00">14:15</MenuItem>
-              <MenuItem value="14:45:00">14:45</MenuItem>
-              <MenuItem value="15:15:00">15:15</MenuItem>
-              <MenuItem value="15:45:00">15:45</MenuItem>
-              <MenuItem value="16:15:00">16:15</MenuItem>
-            </Select>
-          </FormControl>
         </DialogContent>
         <DialogActions>
           <Button
@@ -163,32 +128,30 @@ export function DialogForm(props: any) {
     </>
   )
 }
-
-export function DialogFormToDeleteAll(props: any) {
+export function DialogFormToCreateNewRg(props: any) {
   const handleClose = () => {
     props.setOpen(false)
   }
-  const [openConfirmDialog, setOpenConfirmDialog] = useState(false)
-  const [dateToRemove, setDateToRemove] = useState('')
+  const [name, setName] = useState('')
 
-  const handleDeleteAllDates = () => {
+  const handleCreateNewPort = () => {
     api
-      .post(`/deleteallagendamentos`, {
-        dateToRemove,
+      .post('/gerarrg', {
+        name,
       })
-      .then((res) => alert('Datas deletadas com sucesso'))
+      .then((res) => alert('RG Cadastrado com sucesso'))
   }
   return (
     <>
       <Dialog open={props.open} onClose={handleClose}>
-        <DialogTitle>INSIRA A DATA (DD/MM/YYYY)</DialogTitle>
+        <DialogTitle>CADASTRAR NOVO PORTADOR DE RG</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
             margin="dense"
-            label="Data"
-            value={dateToRemove}
-            onChange={(e) => setDateToRemove(e.target.value)}
+            label="Nome"
+            onChange={(e) => setName(e.target.value)}
+            sx={{ minWidth: '380px' }}
             type="text"
             fullWidth
             variant="standard"
@@ -208,28 +171,22 @@ export function DialogFormToDeleteAll(props: any) {
           >
             Cancel
           </Button>
+
           <Button
-            onClick={() => setOpenConfirmDialog(true)}
-            color="error"
-            variant="outlined"
-            disabled={dateToRemove === ''}
+            onClick={handleCreateNewPort}
+            color="success"
             sx={{
               ':hover': {
-                background: 'red',
+                background: 'green',
                 color: 'white',
               },
             }}
-            endIcon={<BsTrash />}
+            variant="outlined"
+            endIcon={<AiOutlineSave />}
           >
-            Excluir
+            CADASTRAR
           </Button>
         </DialogActions>
-        <DialogConfirmToDeleteAll
-          onClick={handleDeleteAllDates}
-          setOpen={setOpenConfirmDialog}
-          datesToDelete={dateToRemove}
-          open={openConfirmDialog}
-        />
       </Dialog>
     </>
   )

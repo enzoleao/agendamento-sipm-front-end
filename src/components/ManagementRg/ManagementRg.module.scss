@@ -1,0 +1,57 @@
+.containerFooter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  .headerFilterSection {
+    display: flex;
+    justify-content: space-between;
+    
+    section, .rightSectionHeader {
+        width: 100%;
+    }
+    .rightSectionHeader {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+  }
+  section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+    footer {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        .countPagesResults {
+            margin-left: 40px;
+            color: #282957;
+        }
+        .buttonSectionFooter {
+            display: flex;
+            margin-right: 40px;
+            margin-bottom: 20px;
+            button {
+                background: none;
+                border: none;
+                height: 28px;
+                width: 28px;
+                border-radius: 4px;
+                color: #282957;
+            }
+            p {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 4px;
+                height: 28px;
+                width: 28px;
+                background-color: #282957;
+                color: white;
+            }
+        }
+    }
+}

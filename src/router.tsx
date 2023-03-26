@@ -6,7 +6,7 @@ export function Router() {
   const { isAuthenticated } = useContexts()
 
   const Private = ({ children }: any) => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated && window.location.href !== '/login') {
       return <Navigate to="/login" />
     }
     return children

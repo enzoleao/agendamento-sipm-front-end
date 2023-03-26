@@ -18,6 +18,7 @@ type useContextType = {
   componentToShowHome: any
   setComponentToShowHome: any
   logout: any
+  userInfo: any
 }
 export const Context = createContext({} as useContextType)
 
@@ -28,17 +29,16 @@ export function ContextProvider({ children }: any) {
   const [isLoading, setIsLoading] = useState(true)
   const [showSideBar, setShowSideBar] = useState(false)
   const [componentToShowHome, setComponentToShowHome] = useState('one')
-
+  const [userInfo, setUserInfo] = useState()
   useEffect(() => {
     const cookiesVerify = cookies['auth-token']
     const verifyUser = async () => {
       if (cookiesVerify) {
         try {
-          const response = await api.get('/verifytoken')
-          if (response) {
-            setIsAuthenticated(true)
-            navigate('/dashboard')
-          }
+          const response = await api.get('/verifyTokenMe')
+          setUserInfo(response.data.user)
+          setIsAuthenticated(true)
+          navigate('/dashboard')
         } catch (err) {
           alert('Sessao expirida, realizar login novamente')
           navigate('/')
@@ -53,15 +53,16 @@ export function ContextProvider({ children }: any) {
   const signIn = async ({ usuario, password }: signInType) => {
     try {
       const response = await api.post('/realizarlogin', { usuario, password })
+      const { token, user } = response.data
+      setIsAuthenticated(true)
+      console.log(user)
 
-      if (response.data.token) {
-        setIsAuthenticated(true)
-        setCookie(undefined, 'auth-token', response.data.token, {
-          maxAge: 60 * 60 * 1,
-        })
-        api.defaults.headers['x-access-token'] = `${response.data.token}`
-        navigate('/')
-      }
+      setUserInfo(user)
+      setCookie(undefined, 'auth-token', token, {
+        maxAge: 60 * 60 * 1,
+      })
+      api.defaults.headers['x-access-token'] = `${token}`
+      navigate('/')
     } catch (err) {
       console.log(err)
     }
@@ -82,6 +83,7 @@ export function ContextProvider({ children }: any) {
         componentToShowHome,
         setComponentToShowHome,
         logout,
+        userInfo,
       }}
     >
       {children}

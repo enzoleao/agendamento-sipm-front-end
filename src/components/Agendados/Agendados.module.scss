@@ -7,7 +7,6 @@
     .tableSection {
         width: 100%;
         height: 100%;
-        padding: 10px 10px;
         min-height: 33rem;
         display: flex;
         flex-direction: column;
@@ -32,16 +31,6 @@
             align-items: center;
             font-family: 'Roboto';
             font-weight: 700;
-
-        }
-        table {
-            width: 100%;
-            color: white;
-            border-radius: 20px;
-
-            tbody {
-                color: #282957;
-            }
 
         }
     }

@@ -11,6 +11,7 @@ export function Sidebar() {
     setShowSideBar,
     componentToShowHome,
     setComponentToShowHome,
+    userInfo,
   } = useContexts()
 
   const handleChangeComponentToShow = (event: any, newValue: any) => {
@@ -34,6 +35,9 @@ export function Sidebar() {
             '& .MuiTabs-indicator': {
               backgroundColor: '#1850c9',
               width: '3px',
+              ':focus': {
+                color: 'red',
+              },
             },
           }}
         >
@@ -44,7 +48,6 @@ export function Sidebar() {
             }}
             value="one"
             label="HOME"
-            wrapped
           />
           <Tab
             sx={{
@@ -54,38 +57,54 @@ export function Sidebar() {
             value="two"
             label="GESTÃO DE RG"
           />
-          <Tab
-            sx={{
-              width: '100%',
-              color: 'white',
-            }}
-            value="three"
-            label="GESTÃO DE FERIADOS"
-          />
-          <Tab
-            sx={{
-              width: '100%',
-              color: 'white',
-            }}
-            value="four"
-            label="GERENCIAMENTO DE POLOS"
-          />
-          <Tab
-            sx={{
-              width: '100%',
-              color: 'white',
-            }}
-            value="five"
-            label="GERENCIAMENTO DE USUARIOS"
-          />
-          <Tab
-            sx={{
-              width: '100%',
-              color: 'white',
-            }}
-            value="six"
-            label="GERENCIAMENTO DE AVISOS"
-          />
+          {userInfo.privilegies ? (
+            <Tab
+              sx={{
+                width: '100%',
+                color: 'white',
+              }}
+              value="three"
+              label="GERENCIAMENTO DE FERIADOS"
+            />
+          ) : (
+            false
+          )}
+          {userInfo.privilegies ? (
+            <Tab
+              sx={{
+                width: '100%',
+                color: 'white',
+              }}
+              value="four"
+              label="GERENCIAMENTO DE POLOS"
+            />
+          ) : (
+            false
+          )}
+          {userInfo.privilegies ? (
+            <Tab
+              sx={{
+                width: '100%',
+                color: 'white',
+              }}
+              value="five"
+              label="GERENCIAMENTO DE USUARIOS"
+            />
+          ) : (
+            false
+          )}
+          {userInfo.privilegies ? (
+            <Tab
+              sx={{
+                width: '100%',
+                color: 'white',
+              }}
+              value="six"
+              label="GERENCIAMENTO DE AVISOS"
+            />
+          ) : (
+            false
+          )}
         </Tabs>
       </Box>
       <AiOutlineClose

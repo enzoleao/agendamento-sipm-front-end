@@ -4,7 +4,7 @@ import { TfiMenuAlt } from 'react-icons/tfi'
 import { useContexts } from '../../contexts/useContexts'
 import styles from './Header.module.scss'
 export function Header() {
-  const { setShowSideBar, showSideBar, logout } = useContexts()
+  const { setShowSideBar, showSideBar, logout, userInfo } = useContexts()
   const [locationModalUser, setLocationModalUser] = useState(null)
   const open = Boolean(locationModalUser)
 
@@ -26,7 +26,8 @@ export function Header() {
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         sx={{
-          width: '100px',
+          textAlign: 'start',
+          width: '180px',
           background: 'transparent',
           color: 'white',
           height: '100%',
@@ -36,7 +37,7 @@ export function Header() {
         onClick={handleUserSettings}
         className={styles.rightBox}
       >
-        CAP SERRA
+        {userInfo?.user}
       </Button>
       <Menu
         id="basic-menu"
