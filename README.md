@@ -7,13 +7,30 @@ Lista de conteúdos
 <!--ts-->
    * [Tecnologias](#tecnologias)
 <!--te-->
-
+### 🛠 Components
+- [x] Agendados
+- [x] CofirmDialog
+- [x] Header
+- [x] Sidebar
+- [x] Holidays
+- [x] ManagementRg
+- [x] Notices
+- [x] Polos
+- [x] RgGenerator
+- [x] TableBase
+- [x] Users
 ### 🛠 Tecnologias
 
 - [Vite](https://vitejs.dev/guide/)
 - [React-Icons](https://react-icons.github.io/react-icons)
 - [React.js](https://pt-br.reactjs.org/)
 - [Typescript](https://www.typescriptlang.org/)
+- [Mui-React](https://mui.com/)
+- [React-Icons](https://react-icons.github.io/react-icons/)
+- [Tailwind.css](https://tailwindcss.com/)
+- [Mui-React](https://mui.com/)
+- [React-Hook-Form](https://react-hook-form.com/)
+- [Nookies](https://www.npmjs.com/package/nookies)
 - [Axios](https://axios-http.com/)
 - [Sass](https://sass-lang.com/)
 - [VSCode](https://code.visualstudio.com/)
