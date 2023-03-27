@@ -11,12 +11,15 @@ import {
   InputLabel,
 } from '@mui/material'
 import { RxMagnifyingGlass } from 'react-icons/rx'
+import { DialogFormToCreateNewUser } from './DialogForm'
 
 export function Users() {
   const rowsHeader = [{ name: 'Usuario' }, { name: 'Admin' }]
   const [users, setUsers] = useState<any[]>([])
   const [currentPage, setCurrentPage] = useState(0)
   const [searchInput, setSearchInput] = useState('')
+  const [openModalToCreateNewUser, setOpenModalToCreateNewUser] =
+    useState(false)
   useEffect(() => {
     const getAllUsers = async () => {
       try {
@@ -52,7 +55,22 @@ export function Users() {
             }
           />
         </FormControl>
-        <Button>CADASTRAR</Button>
+        <Button
+          variant="outlined"
+          sx={{
+            height: '32px',
+            color: '#282957',
+            borderColor: '#282957',
+            ':hover': {
+              border: 'none',
+              backgroundColor: '#292963',
+              color: 'white',
+            },
+          }}
+          onClick={() => setOpenModalToCreateNewUser(true)}
+        >
+          CADASTRAR
+        </Button>
       </section>
       <div className={styles.tableSection}>
         <TableBase rowsHeader={rowsHeader}>
@@ -88,6 +106,10 @@ export function Users() {
           </button>
         </div>
       </footer>
+      <DialogFormToCreateNewUser
+        open={openModalToCreateNewUser}
+        setOpen={setOpenModalToCreateNewUser}
+      />
     </div>
   )
 }
