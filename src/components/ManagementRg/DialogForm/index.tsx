@@ -119,8 +119,9 @@ export function DialogForm(props: any) {
           </Button>
         </DialogActions>
         <AlertDialog
+          titleDialogForm="Você deseja deseja deletar mesmo: "
           onClick={handleDeleteItem}
-          name={props.name}
+          usuario={props.name}
           setOpen={setOpenConfirmDialog}
           open={openConfirmDialog}
         />

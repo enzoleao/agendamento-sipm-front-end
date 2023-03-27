@@ -19,13 +19,15 @@ export function DialogForm(props: any) {
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false)
   const [admin, setAdmin] = useState(props.admin)
   const [editValues, setEditValues] = useState({
-    name: props.name,
+    admin: props.admin,
+    password: props.name,
   })
   const handleEditItem = () => {
     api
-      .put('/atualizarportador', {
+      .put('/atualizarusuariocadastrado', {
         id: props.id,
-        name: editValues.name,
+        password: editValues.password,
+        admin: props.admin,
       })
       .then((res) => alert('Atualizado com sucesso'))
       .catch((err) => console.log(err.response.data.message))
@@ -34,7 +36,7 @@ export function DialogForm(props: any) {
   }
   const handleDeleteItem = () => {
     api
-      .delete(`/deletarrggerado/${props.id}`)
+      .delete(`/deletarusuariocadastrado/${props.id}`)
       .then((res) => {
         alert('Deletado com sucesso')
       })
@@ -85,7 +87,7 @@ export function DialogForm(props: any) {
             autoFocus
             margin="dense"
             label="Redefinir senha"
-            id="name"
+            id="password"
             onChange={handleChangeValues}
             type="text"
             fullWidth
@@ -136,8 +138,9 @@ export function DialogForm(props: any) {
           </Button>
         </DialogActions>
         <AlertDialog
+          titleDialogForm="Você deseja mesmo deletar o usuário"
           onClick={handleDeleteItem}
-          name={props.name}
+          usuario={props.usuario}
           setOpen={setOpenConfirmDialog}
           open={openConfirmDialog}
         />
@@ -152,8 +155,20 @@ export function DialogFormToCreateNewUser(props: any) {
   const [admin, setAdmin] = useState(props.admin)
   const [editValues, setEditValues] = useState({
     name: props.name,
+    password: props.password,
   })
-
+  const cadastrarUsuario = () => {
+    try {
+      api.post('/cadastrarusuario', {
+        usuario: editValues.name,
+        password: editValues.password,
+        admin,
+      })
+      alert('Cadastrado com sucesso')
+    } catch (err) {
+      console.log(err)
+    }
+  }
   const handleChangeValues = (value: any) => {
     setEditValues((prevValues) => ({
       ...prevValues,
@@ -168,6 +183,7 @@ export function DialogFormToCreateNewUser(props: any) {
         <DialogContent>
           <TextField
             autoFocus
+            id="name"
             margin="dense"
             label="Nome do Usuário"
             defaultValue={props.usuario}
@@ -178,7 +194,7 @@ export function DialogFormToCreateNewUser(props: any) {
           />
           <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="demo-simple-select-standard-label">
-              Ativado
+              Admin
             </InputLabel>
             <Select
               labelId="demo-simple-select-standard-label"
@@ -195,8 +211,8 @@ export function DialogFormToCreateNewUser(props: any) {
           <TextField
             autoFocus
             margin="dense"
-            label="Redefinir senha"
-            id="name"
+            label="Insira a senha"
+            id="password"
             onChange={handleChangeValues}
             type="text"
             fullWidth
@@ -218,6 +234,7 @@ export function DialogFormToCreateNewUser(props: any) {
             Cancel
           </Button>
           <Button
+            onClick={cadastrarUsuario}
             color="success"
             sx={{
               ':hover': {

@@ -28,6 +28,7 @@ export function TableContent(props: any) {
         </td>
       </tr>
       <DialogForm
+        id={props.id}
         usuario={props.usuarios}
         open={open}
         admin={props.admin}

@@ -154,8 +154,9 @@ export function DialogForm(props: any) {
           </Button>
         </DialogActions>
         <AlertDialog
+          titleDialogForm="Você deseja deletar o agendamento de: "
           onClick={handleDeleteItem}
-          name={props.name}
+          usuario={props.name}
           setOpen={setOpenConfirmDialog}
           open={openConfirmDialog}
         />

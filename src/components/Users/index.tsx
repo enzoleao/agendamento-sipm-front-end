@@ -78,6 +78,7 @@ export function Users() {
             currentItens.map((infos) => {
               return (
                 <TableContent
+                  id={infos.id}
                   key={infos.id}
                   usuarios={infos.usuario}
                   admin={infos.admin}

@@ -19,14 +19,14 @@ export function AlertDialog(props: any) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          VOCÊ DESEJA MESMO APAGAR O AGENDAMENTO ?
+          {props.titleDialogForm}
         </DialogTitle>
         <DialogContent>
           <DialogContentText
             sx={{ textAlign: 'center' }}
             id="alert-dialog-description"
           >
-            {props.name}
+            {props.usuario}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
