@@ -6,26 +6,47 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import api from '../../../services/api'
 import { useState } from 'react'
+import { BsTrash } from 'react-icons/bs'
 import { AiOutlineSave } from 'react-icons/ai'
 import { IoMdClose } from 'react-icons/io'
+import { AlertDialog } from '../../ConfirmDialog'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 
 export function DialogForm(props: any) {
-  const [vagas, setVagas] = useState(props.vagas)
-  const [ativado, setAtivado] = useState(props.ativado)
+  const handleClose = () => {
+    props.setOpen(false)
+  }
+  const [openConfirmDialog, setOpenConfirmDialog] = useState(false)
+  const [admin, setAdmin] = useState(props.admin)
+  const [editValues, setEditValues] = useState({
+    name: props.name,
+  })
   const handleEditItem = () => {
     api
-      .put(`/atualizarPolo/${props.id}`, {
-        vagas,
-        ativado,
+      .put('/atualizarportador', {
+        id: props.id,
+        name: editValues.name,
       })
       .then((res) => alert('Atualizado com sucesso'))
       .catch((err) => console.log(err.response.data.message))
 
     handleClose()
   }
-  const handleClose = () => {
-    props.setOpen(false)
+  const handleDeleteItem = () => {
+    api
+      .delete(`/deletarrggerado/${props.id}`)
+      .then((res) => {
+        alert('Deletado com sucesso')
+      })
+      .catch((err) => console.log(err))
+
+    handleClose()
+  }
+  const handleChangeValues = (value: any) => {
+    setEditValues((prevValues) => ({
+      ...prevValues,
+      [value.target.id]: value.target.value,
+    }))
   }
 
   return (
@@ -36,31 +57,14 @@ export function DialogForm(props: any) {
           <TextField
             autoFocus
             margin="dense"
-            label="POLO"
+            label="USUARIO"
             disabled
-            defaultValue={props.polo}
+            defaultValue={props.usuario}
+            onChange={handleChangeValues}
             type="text"
             fullWidth
             variant="standard"
           />
-          <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-standard-label">
-              Vagas por horário
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-standard-label"
-              id="vagas"
-              value={vagas}
-              onChange={(e) => setVagas(e.target.value)}
-              defaultValue={vagas}
-              label="Vagas"
-            >
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-            </Select>
-          </FormControl>
           <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="demo-simple-select-standard-label">
               Ativado
@@ -68,15 +72,25 @@ export function DialogForm(props: any) {
             <Select
               labelId="demo-simple-select-standard-label"
               id=""
-              value={ativado}
-              onChange={(e) => setAtivado(e.target.value)}
+              value={admin}
+              onChange={(e) => setAdmin(e.target.value)}
               label="Ativado"
-              defaultValue={ativado}
+              defaultValue={admin}
             >
-              <MenuItem value={false}>Sim</MenuItem>
-              <MenuItem value={true}>Falso</MenuItem>
+              <MenuItem value={true}>Sim</MenuItem>
+              <MenuItem value={false}>Falso</MenuItem>
             </Select>
           </FormControl>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Redefinir senha"
+            id="name"
+            onChange={handleChangeValues}
+            type="text"
+            fullWidth
+            variant="standard"
+          />
         </DialogContent>
         <DialogActions>
           <Button
@@ -93,6 +107,20 @@ export function DialogForm(props: any) {
             Cancel
           </Button>
           <Button
+            onClick={() => setOpenConfirmDialog(true)}
+            color="error"
+            variant="outlined"
+            sx={{
+              ':hover': {
+                background: 'red',
+                color: 'white',
+              },
+            }}
+            endIcon={<BsTrash />}
+          >
+            Excluir
+          </Button>
+          <Button
             onClick={handleEditItem}
             color="success"
             sx={{
@@ -107,6 +135,12 @@ export function DialogForm(props: any) {
             Salvar
           </Button>
         </DialogActions>
+        <AlertDialog
+          onClick={handleDeleteItem}
+          name={props.name}
+          setOpen={setOpenConfirmDialog}
+          open={openConfirmDialog}
+        />
       </Dialog>
     </>
   )

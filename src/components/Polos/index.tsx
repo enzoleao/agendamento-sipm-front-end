@@ -23,10 +23,11 @@ export function Polos() {
           polos.map((infos) => {
             return (
               <TableContent
+                id={infos.id}
                 key={infos.id}
                 polo={infos.polo}
                 vagas={infos.vagas}
-                ativado={infos.ativado.toString() === 'false' ? 'Sim' : 'Não'}
+                ativado={infos.ativado}
               />
             )
           })}
