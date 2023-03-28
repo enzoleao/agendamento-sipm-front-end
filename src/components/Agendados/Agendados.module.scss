@@ -34,36 +34,4 @@
 
         }
     }
-
-    footer {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        .countPagesResults {
-            margin-left: 40px;
-            color: #282957;
-        }
-        .buttonSectionFooter {
-            display: flex;
-            margin-right: 40px;
-            margin-bottom: 20px;
-            button {
-                background: none;
-                border: none;
-                height: 28px;
-                width: 28px;
-                border-radius: 4px;
-            }
-            p {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 4px;
-                height: 28px;
-                width: 28px;
-                background-color: #282957;
-                color: white;
-            }
-        }
-    }
 }

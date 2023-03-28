@@ -73,7 +73,16 @@ export function Users() {
         </Button>
       </section>
       <div className={styles.tableSection}>
-        <TableBase rowsHeader={rowsHeader}>
+        <TableBase
+          currentItens={currentItens}
+          totalItens={filterOption}
+          pages={pages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          itensPerPage={itensPerPage}
+          paginationActive={true}
+          rowsHeader={rowsHeader}
+        >
           {typeof currentItens !== 'undefined' &&
             currentItens.map((infos) => {
               return (
@@ -87,26 +96,6 @@ export function Users() {
             })}
         </TableBase>
       </div>
-      <footer>
-        <p className={styles.countPagesResults}>
-          Mostrando 1 - {itensPerPage} de {users.length}
-        </p>
-        <div className={styles.buttonSectionFooter}>
-          <button
-            disabled={currentPage === 0}
-            onClick={() => setCurrentPage(currentPage - 1)}
-          >
-            {'<'}
-          </button>
-          <p>{currentPage + 1}</p>
-          <button
-            disabled={currentPage + 1 === pages}
-            onClick={() => setCurrentPage(currentPage + 1)}
-          >
-            {'>'}
-          </button>
-        </div>
-      </footer>
       <DialogFormToCreateNewUser
         open={openModalToCreateNewUser}
         setOpen={setOpenModalToCreateNewUser}

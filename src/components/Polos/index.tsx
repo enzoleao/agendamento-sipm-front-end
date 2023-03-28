@@ -18,7 +18,7 @@ export function Polos() {
   }, [])
   return (
     <div className={styles.ContainerTable}>
-      <TableBase rowsHeader={rowsHeader}>
+      <TableBase paginationActive={false} rowsHeader={rowsHeader}>
         {typeof polos !== 'undefined' &&
           polos.map((infos) => {
             return (

@@ -126,7 +126,16 @@ export function Agendados() {
             REMOVER AGENDAMENTOS POR DATA
           </Button>
         </header>
-        <TableBase rowsHeader={headerInfos}>
+        <TableBase
+          currentItens={currentItens}
+          itensPerPage={itensPerPage}
+          rowsHeader={headerInfos}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          pages={pages}
+          totalItens={filterOption}
+          paginationActive={true}
+        >
           {typeof currentItens !== 'undefined' &&
             currentItens.map((users) => {
               return (
@@ -147,26 +156,6 @@ export function Agendados() {
             })}
         </TableBase>
       </div>
-      <footer>
-        <p className={styles.countPagesResults}>
-          Mostrando 1 - {itensPerPage} de {filterOption.length}
-        </p>
-        <div className={styles.buttonSectionFooter}>
-          <button
-            disabled={currentPage === 0}
-            onClick={() => setCurrentPage(currentPage - 1)}
-          >
-            {'<'}
-          </button>
-          <p>{currentPage + 1}</p>
-          <button
-            disabled={currentPage + 1 === pages}
-            onClick={() => setCurrentPage(currentPage + 1)}
-          >
-            {'>'}
-          </button>
-        </div>
-      </footer>
       <DialogFormToDeleteAll
         setOpen={setOpenModalToDeleteDates}
         open={openModalToDeleteDates}

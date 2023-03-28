@@ -107,7 +107,16 @@ export function ManagementRg() {
           </Button>
         </section>
       </section>
-      <TableBase rowsHeader={rowsHeader}>
+      <TableBase
+        itensPerPage={itensPerPage}
+        currentItens={currentItens}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        pages={pages}
+        totalItens={filterOption}
+        rowsHeader={rowsHeader}
+        paginationActive={true}
+      >
         {typeof currentItens !== 'undefined' &&
           currentItens.map((infos) => {
             return (
@@ -122,26 +131,6 @@ export function ManagementRg() {
             )
           })}
       </TableBase>
-      <footer>
-        <p className={styles.countPagesResults}>
-          Mostrando 1 - {itensPerPage} de {filterOption.length}
-        </p>
-        <div className={styles.buttonSectionFooter}>
-          <button
-            disabled={currentPage === 0}
-            onClick={() => setCurrentPage(currentPage - 1)}
-          >
-            {'<'}
-          </button>
-          <p>{currentPage + 1}</p>
-          <button
-            disabled={currentPage + 1 === pages}
-            onClick={() => setCurrentPage(currentPage + 1)}
-          >
-            {'>'}
-          </button>
-        </div>
-      </footer>
       <DialogFormToCreateNewRg
         open={dialogFormToCreateNewRg}
         setOpen={setDialogFormToCreateNewRg}
