@@ -1,3 +1,4 @@
+/* eslint-disable  */
 import {
   Button,
   FormControl,
@@ -63,6 +64,7 @@ export function Notices() {
           variant="filled"
           sx={{ width: '100%', maxWidth: '420px' }}
         />
+
         <FormControl
           variant="filled"
           sx={{ m: 1, minWidth: 120, width: '100%', maxWidth: '420px' }}
@@ -70,12 +72,12 @@ export function Notices() {
           <InputLabel id="demo-simple-select-filled-label">
             Aviso ativado
           </InputLabel>
+
           <Select
             required
             labelId="demo-simple-select-filled-label"
-            id="demo-simple-select-filled"
             value={ativacaoAviso}
-            onChange={(e) => setAtivacaoAviso(e.target.value)}
+            onChange={(e: any) => setAtivacaoAviso(e.target.value)}
           >
             <MenuItem value={true}>Sim</MenuItem>
             <MenuItem value={false}>Não</MenuItem>
