@@ -1,10 +1,13 @@
+import { Button } from '@mui/material'
 import { useState, useEffect } from 'react'
 import api from '../../services/api'
 import { TableBase } from '../TableBase'
+import { DialogForm } from './DialogForm'
 import styles from './Holidays.module.scss'
 import { TableContent } from './TableContent'
 export function Holidays() {
   const [feriados, setFeriados] = useState<any[]>([])
+  const [open, setOpen] = useState(false)
   useEffect(() => {
     const getAllFeriados = async () => {
       try {
@@ -25,6 +28,24 @@ export function Holidays() {
   const currentItens = feriados.slice(startIndex, endIndex)
   return (
     <div className={styles.holidayTableContainer}>
+      <header>
+        <Button
+          onClick={() => setOpen(true)}
+          sx={{
+            height: '32px',
+            color: '#282957',
+            borderColor: '#282957',
+            ':hover': {
+              border: 'none',
+              backgroundColor: '#292963',
+              color: 'white',
+            },
+          }}
+          variant="outlined"
+        >
+          ADICIONAR FERIADO
+        </Button>
+      </header>
       <TableBase
         itensPerPage={itensPerPage}
         currentItens={currentItens}
@@ -39,6 +60,7 @@ export function Holidays() {
           currentItens.map((infos) => {
             return (
               <TableContent
+                id={infos.id}
                 key={infos.id}
                 feriado={infos.nome}
                 data={infos.data}
@@ -46,6 +68,7 @@ export function Holidays() {
             )
           })}
       </TableBase>
+      <DialogForm open={open} setOpen={setOpen} />
     </div>
   )
 }
