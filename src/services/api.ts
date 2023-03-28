@@ -3,7 +3,7 @@ import { parseCookies } from 'nookies'
 
 const cookies = parseCookies()
 const api = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: 'https://web-production-8e74.up.railway.app',
   headers: {
     'x-access-token': `${cookies['auth-token']}`,
     'Content-Type': 'application/json',
