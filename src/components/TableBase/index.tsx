@@ -15,7 +15,13 @@ interface TableBaseProps {
 export function TableBase(props: TableBaseProps) {
   const headerInfo = props.rowsHeader
   return (
-    <div className={styles.divTableWithOverflow}>
+    <div
+      className={
+        props.paginationActive
+          ? styles.divTableWithOverflow
+          : styles.withOutFooter
+      }
+    >
       <table className="w-full text-sm text-left  rounded-md">
         <thead className="text-xs uppercase bg-principal-color ">
           <tr className="text-start ">

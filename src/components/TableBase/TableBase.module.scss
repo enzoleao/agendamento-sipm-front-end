@@ -1,5 +1,5 @@
 
-.divTableWithOverflow {
+.divTableWithOverflow, .withOutFooter {
  width: 100%;
  height: 100%;
  display: flex;
@@ -58,4 +58,7 @@
             }
         }
     }
+}
+.withOutFooter {
+    justify-content: center;
 }

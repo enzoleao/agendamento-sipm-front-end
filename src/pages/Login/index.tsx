@@ -42,7 +42,9 @@ export function Login() {
           </section>
           <section className={styles.rightSectionLogin}>
             <header>
-              <img src={logoDgp} className={styles.imageLoginMobile} alt="" />
+              <div className={styles.imageMobileContainer}>
+                <img src={logoDgp} className={styles.imageLoginMobile} alt="" />
+              </div>
               <h1>SIPM</h1>
               <h4>Serviço de Identificação Policial Militar</h4>
             </header>
