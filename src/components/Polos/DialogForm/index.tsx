@@ -17,7 +17,7 @@ export function DialogForm(props: any) {
     api
       .put(`/atualizarPolo/${props.id}`, {
         vagas,
-        ativado,
+        ativado: !!ativado,
       })
       .then((res) => alert('Atualizado com sucesso'))
       .catch((err) => console.log(err.response.data.message))
@@ -68,13 +68,13 @@ export function DialogForm(props: any) {
             <Select
               labelId="demo-simple-select-standard-label"
               id=""
-              value={ativado}
+              value={+ativado}
               onChange={(e) => setAtivado(e.target.value)}
               label="Ativado"
               defaultValue={ativado}
             >
-              <MenuItem value={false}>Sim</MenuItem>
-              <MenuItem value={true}>Falso</MenuItem>
+              <MenuItem value={0}>Sim</MenuItem>
+              <MenuItem value={1}>Falso</MenuItem>
             </Select>
           </FormControl>
         </DialogContent>

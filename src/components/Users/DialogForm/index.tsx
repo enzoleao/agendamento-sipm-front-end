@@ -27,7 +27,7 @@ export function DialogForm(props: any) {
       .put('/atualizarusuariocadastrado', {
         id: props.id,
         password: editValues.password,
-        admin: props.admin,
+        admin: !!admin,
       })
       .then((res) => alert('Atualizado com sucesso'))
       .catch((err) => console.log(err.response.data.message))
@@ -74,13 +74,13 @@ export function DialogForm(props: any) {
             <Select
               labelId="demo-simple-select-standard-label"
               id=""
-              value={admin}
+              value={+admin}
               onChange={(e) => setAdmin(e.target.value)}
               label="Ativado"
-              defaultValue={admin}
+              defaultValue={+admin}
             >
-              <MenuItem value={true}>Sim</MenuItem>
-              <MenuItem value={false}>Falso</MenuItem>
+              <MenuItem value={1}>Sim</MenuItem>
+              <MenuItem value={0}>Falso</MenuItem>
             </Select>
           </FormControl>
           <TextField
@@ -162,7 +162,7 @@ export function DialogFormToCreateNewUser(props: any) {
       api.post('/cadastrarusuario', {
         usuario: editValues.name,
         password: editValues.password,
-        admin,
+        admin: !!admin,
       })
       alert('Cadastrado com sucesso')
     } catch (err) {
@@ -199,13 +199,13 @@ export function DialogFormToCreateNewUser(props: any) {
             <Select
               labelId="demo-simple-select-standard-label"
               id=""
-              value={admin}
+              value={+admin}
               onChange={(e) => setAdmin(e.target.value)}
               label="Ativado"
               defaultValue={admin}
             >
-              <MenuItem value={true}>Sim</MenuItem>
-              <MenuItem value={false}>Falso</MenuItem>
+              <MenuItem value={1}>Sim</MenuItem>
+              <MenuItem value={0}>Falso</MenuItem>
             </Select>
           </FormControl>
           <TextField

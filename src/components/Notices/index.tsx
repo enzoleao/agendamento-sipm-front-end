@@ -31,7 +31,7 @@ export function Notices() {
   const handlEditAlert = () => {
     api
       .put('/cadastraraviso', {
-        value: aviso,
+        value: !!aviso,
         header: aviso,
         ativado: ativacaoAviso,
       })
@@ -76,11 +76,12 @@ export function Notices() {
           <Select
             required
             labelId="demo-simple-select-filled-label"
-            value={ativacaoAviso}
+            value={+ativacaoAviso}
             onChange={(e: any) => setAtivacaoAviso(e.target.value)}
           >
-            <MenuItem value={true}>Sim</MenuItem>
-            <MenuItem value={false}>Não</MenuItem>
+            {/* eslint-disable */}
+            <MenuItem value={1}>Sim</MenuItem>
+            <MenuItem value={0}>Não</MenuItem>
           </Select>
         </FormControl>
         <Button
