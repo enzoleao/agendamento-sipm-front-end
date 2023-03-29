@@ -20,6 +20,19 @@
         tbody {
             color: #282957;
             text-align: center;
+
+            tr {
+                background: white;
+                font-weight: 500;
+                cursor: pointer;
+                border: 1px solid;
+                td {
+                    padding: 8px;
+                }
+                &:hover {
+                    background-color: #f3f4f6;
+                }
+            }
         }
     
     }

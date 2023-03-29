@@ -8,14 +8,11 @@ export function TableContent(props: any) {
 
   return (
     <>
-      <tr
-        key={props.id}
-        className="bg-white font-medium  text-center border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 pointer"
-      >
-        <td className="p-2 w-[10%]">{props.polo}</td>
-        <td className="p-2 w-[40%]">{props.vagas}</td>
-        <td className="p-2 ">{props.ativado === false ? 'Sim' : 'Nao'}</td>
-        <td className="p-2 items-center">
+      <tr key={props.id}>
+        <td className="w-[10%]">{props.polo}</td>
+        <td className="w-[40%]">{props.vagas}</td>
+        <td>{props.ativado === false ? 'Sim' : 'Nao'}</td>
+        <td className="items-center">
           <Button onClick={() => setOpen(true)} className="mr-3">
             <FiSettings color="#282957" />
           </Button>

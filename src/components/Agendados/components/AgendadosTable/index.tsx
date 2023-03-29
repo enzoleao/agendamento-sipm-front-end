@@ -19,20 +19,17 @@ export function AgendadosTable(props: any) {
         open={open}
         setOpen={setOpen}
       />
-      <tr
-        key={props.id}
-        className="bg-white font-medium  text-center border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 pointer"
-      >
-        <td className="p-2 ">{props.name}</td>
-        <td className="p-2 ">{props.cpf}</td>
-        <td className="p-2 ">{props.patente}</td>
-        <td className="p-2 ">{props.telefone}</td>
-        <td className="p-2 ">{props.modelo}</td>
-        <td className="p-2 ">{props.lotacao}</td>
-        <td className="p-2 ">{props.polo}</td>
-        <td className="p-2">{props.data}</td>
-        <td className="p-2">{props.horario}</td>
-        <td className="p-2 items-center">
+      <tr key={props.id}>
+        <td>{props.name}</td>
+        <td>{props.cpf}</td>
+        <td>{props.patente}</td>
+        <td>{props.telefone}</td>
+        <td>{props.modelo}</td>
+        <td>{props.lotacao}</td>
+        <td>{props.polo}</td>
+        <td>{props.data}</td>
+        <td>{props.horario}</td>
+        <td className="items-center">
           <Button
             onClick={() => {
               buttonClickEdit()
