@@ -55,8 +55,6 @@ export function ContextProvider({ children }: any) {
       const response = await api.post('/realizarlogin', { usuario, password })
       const { token, user } = response.data
       setIsAuthenticated(true)
-      console.log(user)
-
       setUserInfo(user)
       setCookie(undefined, 'auth-token', token, {
         maxAge: 60 * 60 * 1,

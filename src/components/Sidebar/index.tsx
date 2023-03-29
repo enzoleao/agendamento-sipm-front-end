@@ -19,7 +19,6 @@ export function Sidebar() {
   }
   return (
     <div
-      onClick={() => console.log(componentToShowHome)}
       className={
         showSideBar ? styles.sideBarContainerActive : styles.sideBarContainer
       }
