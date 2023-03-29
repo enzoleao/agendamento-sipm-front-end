@@ -62,7 +62,7 @@ export function ContextProvider({ children }: any) {
         maxAge: 60 * 60 * 1,
       })
       api.defaults.headers['x-access-token'] = `${token}`
-      navigate('/')
+      navigate('/dashboard')
     } catch (err) {
       console.log(err)
     }

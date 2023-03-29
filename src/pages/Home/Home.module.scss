@@ -9,12 +9,14 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        min-width: 328px;
         .content{
             display: flex;
             align-items: center;
             width: 100%;
             margin-top: 40px;
             padding: 0px 10px;
+            min-width: 448px;
             min-height: 34rem;
             border-radius: 10px;
             box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
