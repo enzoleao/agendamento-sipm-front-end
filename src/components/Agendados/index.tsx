@@ -12,7 +12,10 @@ import {
   Select,
 } from '@mui/material'
 import { RxMagnifyingGlass } from 'react-icons/rx'
-import { DialogFormToDeleteAll } from './components/DialogForm'
+import {
+  DialogFormToCreateRelatorio,
+  DialogFormToDeleteAll,
+} from './components/DialogForm'
 import { TableBase } from '../TableBase'
 
 export function Agendados() {
@@ -32,6 +35,7 @@ export function Agendados() {
   const [currentPage, setCurrentPage] = useState(0)
   const [searchInput, setSearchInput] = useState('')
   const [filterType, setFilterType] = useState('cpf')
+  const [openModalToCreate, setOpenModalToCreate] = useState(false)
   const [openModalToDeleteDates, setOpenModalToDeleteDates] = useState(false)
   /* ---- FILTER ---- */
   // eslint-disable-next-line array-callback-return
@@ -97,7 +101,7 @@ export function Agendados() {
                 Buscar...
               </InputLabel>
               <Input
-                sx={{ width: '100%', maxWidth: '420px' }}
+                sx={{ width: '100%', maxWidth: '320px' }}
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 endAdornment={
@@ -108,7 +112,22 @@ export function Agendados() {
               />
             </FormControl>
           </section>
-
+          <Button
+            sx={{
+              height: '32px',
+              color: '#282957',
+              borderColor: '#282957',
+              ':hover': {
+                border: 'none',
+                backgroundColor: '#292963',
+                color: 'white',
+              },
+            }}
+            onClick={() => setOpenModalToCreate(true)}
+            variant="outlined"
+          >
+            RELÁTORIO
+          </Button>
           <Button
             sx={{
               height: '32px',
@@ -159,6 +178,10 @@ export function Agendados() {
       <DialogFormToDeleteAll
         setOpen={setOpenModalToDeleteDates}
         open={openModalToDeleteDates}
+      />
+      <DialogFormToCreateRelatorio
+        open={openModalToCreate}
+        setOpen={setOpenModalToCreate}
       />
     </div>
   )

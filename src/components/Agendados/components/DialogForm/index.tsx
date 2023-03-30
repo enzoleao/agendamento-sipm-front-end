@@ -235,3 +235,67 @@ export function DialogFormToDeleteAll(props: any) {
     </>
   )
 }
+
+export function DialogFormToCreateRelatorio(props: any) {
+  const handleClose = () => {
+    props.setOpen(false)
+  }
+  const [dateToFind, setDateToFind] = useState('')
+
+  const gerarPdf = () => {
+    api
+      .post(`/gerarpdf`, {
+        dateToFind,
+      })
+      .then((res) => console.log(res))
+  }
+  return (
+    <>
+      <Dialog open={props.open} onClose={handleClose}>
+        <DialogTitle>INSIRA A DATA (DD/MM/YYYY)</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Data"
+            value={dateToFind}
+            onChange={(e) => setDateToFind(e.target.value)}
+            type="text"
+            fullWidth
+            variant="standard"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button
+            sx={{
+              ':hover': {
+                background: '#1B75D0',
+                color: 'white',
+              },
+            }}
+            endIcon={<IoMdClose />}
+            variant="outlined"
+            onClick={handleClose}
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={gerarPdf}
+            color="success"
+            variant="outlined"
+            disabled={dateToFind === ''}
+            sx={{
+              ':hover': {
+                background: 'red',
+                color: 'white',
+              },
+            }}
+            endIcon={<BsTrash />}
+          >
+            GERAR
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  )
+}
