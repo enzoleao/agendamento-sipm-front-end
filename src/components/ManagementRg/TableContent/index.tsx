@@ -10,15 +10,12 @@ export function TableContet(props: any) {
   }
   return (
     <>
-      <tr
-        key={props.id}
-        className="bg-white font-medium  text-center border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 pointer"
-      >
-        <td className="p-2 w-[10%]">{props.rg}</td>
-        <td className="p-2 w-[40%]">{props.portador}</td>
-        <td className="p-2 ">{props.gerador}</td>
-        <td className="p-2 ">{props.alteradoBy}</td>
-        <td className="p-2 items-center">
+      <tr key={props.id}>
+        <td className="w-[10%]">{props.rg}</td>
+        <td className="w-[40%]">{props.portador}</td>
+        <td>{props.gerador}</td>
+        <td>{props.alteradoBy}</td>
+        <td>
           <Button
             onClick={() => {
               buttonClickEdit()
