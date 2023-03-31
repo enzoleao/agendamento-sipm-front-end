@@ -18,6 +18,7 @@
     "material-ui-popup-state": "^5.0.8",
     "nookies": "^2.5.2",
     "react": "^18.2.0",
+    "react-base64-downloader": "^2.1.7",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.7",
     "react-icons": "^4.8.0",

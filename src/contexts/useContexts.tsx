@@ -24,8 +24,8 @@ export const Context = createContext({} as useContextType)
 
 export function ContextProvider({ children }: any) {
   const navigate = useNavigate()
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const cookies = parseCookies()
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [showSideBar, setShowSideBar] = useState(false)
   const [componentToShowHome, setComponentToShowHome] = useState('one')

@@ -242,12 +242,16 @@ export function DialogFormToCreateRelatorio(props: any) {
   }
   const [dateToFind, setDateToFind] = useState('')
 
-  const gerarPdf = () => {
-    api
-      .post(`/gerarpdf`, {
-        dateToFind,
-      })
-      .then((res) => console.log(res))
+  const gerarPdf = async () => {
+    const newDate = dateToFind.replace(/[/]/g, '-')
+
+    const response = await api.get(`/gerarpdf/${newDate}`)
+    const linkSource = `data:application/pdf;base64,${response.data}`
+    const downloadLink = document.createElement('a')
+    const fileName = `agendados(${dateToFind}).pdf`
+    downloadLink.href = linkSource
+    downloadLink.download = fileName
+    downloadLink.click()
   }
   return (
     <>
@@ -286,7 +290,7 @@ export function DialogFormToCreateRelatorio(props: any) {
             disabled={dateToFind === ''}
             sx={{
               ':hover': {
-                background: 'red',
+                background: 'green',
                 color: 'white',
               },
             }}
