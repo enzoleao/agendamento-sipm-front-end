@@ -3,6 +3,7 @@ import { useContexts } from './contexts/useContexts'
 import { Home } from './pages/Home'
 import { Login } from './pages/Login'
 import { Agendamento } from './pages/Agendamento'
+import { ConsultarHorarios } from './pages/consultarhorarios'
 export function Router() {
   const { isAuthenticated } = useContexts()
 
@@ -24,6 +25,7 @@ export function Router() {
       />
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<Agendamento />} />
+      <Route path="/consultarhorarios" element={<ConsultarHorarios />} />
     </Routes>
   )
 }
