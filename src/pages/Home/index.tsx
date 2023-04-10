@@ -17,6 +17,7 @@ export function Home() {
       <Sidebar />
       <div className={styles.homeContainer}>
         <div className={styles.content}>
+          <h1>.</h1>
           {(() => {
             switch (componentToShowHome) {
               case 'one':
