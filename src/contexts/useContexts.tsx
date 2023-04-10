@@ -38,7 +38,10 @@ export function ContextProvider({ children }: any) {
           const response = await api.get('/verifyTokenMe')
           setUserInfo(response.data.user)
           setIsAuthenticated(true)
-          navigate('/dashboard')
+          if (window.location.pathname === '/login') {
+            navigate('/dashboard')
+          }
+          
         } catch (err) {
           alert('Sessao expirida, realizar login novamente')
           navigate('/')
