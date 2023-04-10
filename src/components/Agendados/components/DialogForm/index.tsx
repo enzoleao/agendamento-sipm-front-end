@@ -244,10 +244,9 @@ export function DialogFormToCreateRelatorio(props: any) {
   const [dateToFind, setDateToFind] = useState('')
 
   const gerarPdf = async () => {
-    let responseData
     const newDate = dateToFind.replace(/[/]/g, '-')
 
-    const response = await api.get(`/gerarpdf/${newDate}`).then(async ()=> responseData =  await api.get(`/downloadpdf/${newDate}`).then((res)=> setQrCode(res.data)))
+    await api.get(`/gerarpdf/${newDate}`).then(async ()=> await api.get(`/downloadpdf/${newDate}`).then((res)=> setQrCode(res.data)))
 
     const linkSource = `data:application/pdf;base64,${qrCode}`
     const downloadLink = document.createElement('a')
