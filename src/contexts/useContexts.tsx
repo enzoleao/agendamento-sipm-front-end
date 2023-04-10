@@ -38,7 +38,7 @@ export function ContextProvider({ children }: any) {
           const response = await api.get('/verifyTokenMe')
           setUserInfo(response.data.user)
           setIsAuthenticated(true)
-          if (window.location.pathname === '/login') {
+          if (window.location.pathname === '/login' || window.location.pathname === '/dashboard') {
             navigate('/dashboard')
           }
           
