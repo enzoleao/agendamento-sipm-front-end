@@ -43,9 +43,11 @@ export function ContextProvider({ children }: any) {
           }
           
         } catch (err) {
-          alert('Sessao expirida, realizar login novamente')
-          navigate('/')
-          console.log(err)
+          if (window.location.pathname !== '/' ){
+            alert('Sessao expirida, realizar login novamente')
+            navigate('/')
+            destroyCookie(undefined, 'auth-token')
+          }
         }
       }
     }

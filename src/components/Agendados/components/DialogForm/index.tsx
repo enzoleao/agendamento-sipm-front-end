@@ -8,7 +8,7 @@ import api from '../../../../services/api'
 import { useState } from 'react'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { BsTrash } from 'react-icons/bs'
-import { AiOutlineSave } from 'react-icons/ai'
+import { AiOutlineSave, AiOutlineDownload } from 'react-icons/ai'
 import { IoMdClose } from 'react-icons/io'
 import { AlertDialog, DialogConfirmToDeleteAll } from '../../../ConfirmDialog'
 
@@ -248,6 +248,9 @@ export function DialogFormToCreateRelatorio(props: any) {
 
     await api.get(`/gerarpdf/${newDate}`).then(async ()=> await api.get(`/downloadpdf/${newDate}`).then((res)=> setQrCode(res.data)))
 
+    
+  }
+  const downloadPdf = () => {
     const linkSource = `data:application/pdf;base64,${qrCode}`
     const downloadLink = document.createElement('a')
     const fileName = `agendados(${dateToFind}).pdf`
@@ -299,6 +302,21 @@ export function DialogFormToCreateRelatorio(props: any) {
             endIcon={<BsTrash />}
           >
             GERAR
+          </Button>
+          <Button
+            onClick={downloadPdf}
+            color="secondary"
+            variant="outlined"
+            disabled={qrCode === ''}
+            sx={{
+              ':hover': {
+                background: 'purple',
+                color: 'white',
+              },
+            }}
+            endIcon={<AiOutlineDownload />}
+          >
+            DOWNLOAD
           </Button>
         </DialogActions>
       </Dialog>
