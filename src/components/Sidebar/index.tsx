@@ -104,6 +104,14 @@ export function Sidebar() {
           ) : (
             false
           )}
+          <Tab
+            sx={{
+              color: 'white',
+              width: '100%',
+            }}
+            value="seven"
+            label="CADASTRAR CPF"
+          />
         </Tabs>
       </Box>
       <AiOutlineClose

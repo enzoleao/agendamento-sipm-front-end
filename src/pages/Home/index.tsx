@@ -1,4 +1,5 @@
 import { Agendados } from '../../components/Agendados'
+import { CpfRegister } from '../../components/CpfRegister'
 import { Header } from '../../components/Header'
 import { Holidays } from '../../components/Holidays'
 import { ManagementRg } from '../../components/ManagementRg'
@@ -7,6 +8,7 @@ import { Polos } from '../../components/Polos'
 import { Sidebar } from '../../components/Sidebar'
 import { Users } from '../../components/Users'
 import { useContexts } from '../../contexts/useContexts'
+
 import styles from './Home.module.scss'
 
 export function Home() {
@@ -32,6 +34,8 @@ export function Home() {
                 return <Users />
               case 'six':
                 return <Notices />
+              case 'seven':
+                return <CpfRegister />
               default:
                 return <Agendados />
             }
