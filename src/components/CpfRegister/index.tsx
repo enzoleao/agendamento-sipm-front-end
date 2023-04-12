@@ -60,7 +60,7 @@ export function CpfRegister() {
             color: '#282957',
             borderColor: '#282957',
             ':hover': {
-              border: 'transparent',
+              borderColor: 'white',
               backgroundColor: '#292963',
               color: 'white',
             },

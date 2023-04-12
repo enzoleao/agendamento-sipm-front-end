@@ -392,6 +392,7 @@ export function Agendamento() {
                         shouldDisableDate={isWeekend}
                         inputFormat="DD/MM/YYYY"
                         label="Escolha a Data"
+                        sx={{ height: '12px' }}
                         value={newData}
                         onChange={(newValue) => {
                           setNewData(newValue)
@@ -399,7 +400,7 @@ export function Agendamento() {
                         renderInput={(params) => (
                           <TextField
                             variant="standard"
-                            sx={{ width: '180px' }}
+                            sx={{ width: '180px', height: '12px' }}
                             {...params}
                           />
                         )}

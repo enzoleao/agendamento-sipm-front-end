@@ -118,7 +118,7 @@ export function Agendados() {
               color: '#282957',
               borderColor: '#282957',
               ':hover': {
-                border: 'none',
+                borderColor: 'white',
                 backgroundColor: '#292963',
                 color: 'white',
               },
@@ -134,7 +134,7 @@ export function Agendados() {
               color: '#282957',
               borderColor: '#282957',
               ':hover': {
-                border: 'none',
+                borderColor: 'white',
                 backgroundColor: '#292963',
                 color: 'white',
               },
