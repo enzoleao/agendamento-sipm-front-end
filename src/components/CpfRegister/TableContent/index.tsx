@@ -1,7 +1,7 @@
-export function TableContent() {
+export function TableContent(props: any) {
   return (
     <tr>
-      <td>ola</td>
+      <td>{props.cpf}</td>
     </tr>
   )
 }
