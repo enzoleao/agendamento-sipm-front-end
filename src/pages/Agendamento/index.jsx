@@ -179,7 +179,7 @@ export function Agendamento() {
             style={{ width: '200px', height: '200px' }}
             alt="teste"
           ></img>
-          <div className="w-full flex flex-col space-x-1 justify-center items-center font-sans">
+          <div className="flex flex-col space-x-1 justify-center items-center font-sans">
             <h1 className="font-bold text-xl sm:text2-xl">
               Serviço de Identificação Policial Militar
             </h1>
@@ -356,7 +356,7 @@ export function Agendamento() {
                   </Select>
                 </FormControl>
               </div>
-              <div className="flex  w-5/6 gap-2 text-white justify-between">
+              <div className="flex  w-5/6 text-white justify-between">
                 <div className="flex flex-col">
                   <LocalizationProvider
                     dateAdapter={AdapterDayjs}
@@ -497,7 +497,7 @@ export function Agendamento() {
               )}
             </div>
           </div>
-          <div className={styles.agendamentoFooter}>
+          <div className={`${styles.agendamentoFooterTeste} h-[4rem]`}>
             <h1 className="text-center">
               Subseção de Identificação da PMPA &copy; Todos os direitos
               reservados. Contato (91) 98516-2740
