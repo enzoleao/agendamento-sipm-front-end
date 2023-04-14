@@ -173,7 +173,7 @@ export function Agendamento() {
           <CircularProgress />
         </Box>
       ) : (
-        <div className="h-screen min-h-full w-screen md:w-full flex flex-col  justify-between items-center">
+        <div className="h-screen min-h-full md:w-full flex flex-col  justify-between items-center">
           <img
             src={Brasao}
             style={{ width: '200px', height: '200px' }}
@@ -249,7 +249,7 @@ export function Agendamento() {
               <div></div>
             )}
           </div>
-          <div className="flex flex-col w-screen  md:w-[55rem] h-[44rem] space-y-4 mb-20 items-center  rounded-md shadow-2xl min-h-[43rem]">
+          <div className="flex flex-col w-full  md:w-[55rem] h-[44rem] space-y-4 items-center justify-center  rounded-md shadow-2xl min-h-[43rem]">
             <div className="flex flex-col flex-grow w-full items-center space-y-5 ">
               <div className="flex flex-col w-5/6 text-white mt-10">
                 <TextField
@@ -353,16 +353,10 @@ export function Agendamento() {
                           </MenuItem>
                         )
                       })}
-
-                    {/* <MenuItem disabled={poloBelem == true ? true : false} value="BELEM - QCG">BELEM - QCG</MenuItem>
-                        <MenuItem value="ALTAMIRA">ALTAMIRA</MenuItem>
-                        <MenuItem value="MARABA">MARABA</MenuItem>
-                        <MenuItem value="Redençao">REDENÇÃO</MenuItem>
-              <MenuItem value="SANTAREM">SANTARÉM</MenuItem> */}
                   </Select>
                 </FormControl>
               </div>
-              <div className="flex  w-5/6 text-white justify-between">
+              <div className="flex  w-5/6 gap-2 text-white justify-between">
                 <div className="flex flex-col">
                   <LocalizationProvider
                     dateAdapter={AdapterDayjs}
@@ -375,13 +369,14 @@ export function Agendamento() {
                         inputFormat="DD/MM/YYYY"
                         label="Escolha a Data"
                         value={newData}
+                        sx={{ height: '100px' }}
                         onChange={(newValue) => {
                           setNewData(newValue)
                         }}
                         renderInput={(params) => (
                           <TextField
                             variant="standard"
-                            sx={{ width: '180px' }}
+                            sx={{ width: '180px', height: '13px' }}
                             {...params}
                           />
                         )}
@@ -400,7 +395,7 @@ export function Agendamento() {
                         renderInput={(params) => (
                           <TextField
                             variant="standard"
-                            sx={{ width: '180px', height: '12px' }}
+                            sx={{ width: '180px', height: '13px' }}
                             {...params}
                           />
                         )}
@@ -484,7 +479,7 @@ export function Agendamento() {
                 </div>
               </div>
             </div>
-            <div className="flex pb-5">
+            <div className="flex pb-5 mb-10">
               {newData === null ? (
                 <Button disabled sx={{ width: '150px' }}>
                   {buttonLoading === true ? <CircularProgress /> : 'AGENDAR'}
