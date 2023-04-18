@@ -25,7 +25,10 @@ export function DialogForm(props: any) {
         id: props.id,
         name: editValues.name,
       })
-      .then((res) => alert('Atualizado com sucesso'))
+      .then((res) => {
+        window.location.replace('/dashboard')
+        alert('Atualizado com sucesso')
+      })
       .catch((err) => console.log(err.response.data.message))
 
     handleClose()
@@ -34,6 +37,7 @@ export function DialogForm(props: any) {
     api
       .delete(`/deletarrggerado/${props.id}`)
       .then((res) => {
+        window.location.replace('/dashboard')
         alert('Deletado com sucesso')
       })
       .catch((err) => console.log(err))

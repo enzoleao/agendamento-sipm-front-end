@@ -32,7 +32,10 @@ export function DialogForm(props: any) {
         horario: horarioPoloChange,
         polo: props.polo,
       })
-      .then((res) => console.log(res))
+      .then((res) => {
+        alert('Atualizado com sucesso')
+        window.location.replace('/dashboard')
+      })
       .catch((err) => console.log(err.response.data.message))
 
     handleClose()
@@ -41,6 +44,7 @@ export function DialogForm(props: any) {
     api
       .delete(`/apagaragendamento/${editValues.id}`)
       .then((res) => {
+        window.location.replace('/dashboard')
         alert('Deletado com sucesso')
       })
       .catch((err) => console.log(err))
@@ -177,7 +181,10 @@ export function DialogFormToDeleteAll(props: any) {
       .post(`/deleteallagendamentos`, {
         dateToRemove,
       })
-      .then((res) => alert('Datas deletadas com sucesso'))
+      .then((res) => {
+        window.location.replace('/dashboard')
+        alert('Datas deletadas com sucesso')
+      })
   }
   return (
     <>
