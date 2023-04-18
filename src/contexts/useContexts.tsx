@@ -32,22 +32,26 @@ export function ContextProvider({ children }: any) {
   const [userInfo, setUserInfo] = useState()
   useEffect(() => {
     const cookiesVerify = cookies['auth-token']
+
     const verifyUser = async () => {
       if (cookiesVerify) {
         try {
           const response = await api.get('/verifyTokenMe')
           setUserInfo(response.data.user)
           setIsAuthenticated(true)
-          if (window.location.pathname === '/login' || window.location.pathname === '/dashboard') {
+          if (window.location.pathname === '/login') {
             navigate('/dashboard')
           }
-          
         } catch (err) {
-          if (window.location.pathname !== '/' ){
+          if (window.location.pathname === '/dashboard') {
             alert('Sessao expirida, realizar login novamente')
-            navigate('/')
+            window.location.replace('/login')
             destroyCookie(undefined, 'auth-token')
           }
+        }
+      } else {
+        if (window.location.pathname === '/dashboard') {
+          navigate('/login')
         }
       }
     }

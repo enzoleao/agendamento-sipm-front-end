@@ -56,7 +56,7 @@ export function Sidebar() {
             value="two"
             label="GESTÃO DE RG"
           />
-          {userInfo.privilegies ? (
+          {userInfo?.privilegies ? (
             <Tab
               sx={{
                 width: '100%',
@@ -68,7 +68,7 @@ export function Sidebar() {
           ) : (
             false
           )}
-          {userInfo.privilegies ? (
+          {userInfo?.privilegies ? (
             <Tab
               sx={{
                 width: '100%',
@@ -80,7 +80,7 @@ export function Sidebar() {
           ) : (
             false
           )}
-          {userInfo.privilegies ? (
+          {userInfo?.privilegies ? (
             <Tab
               sx={{
                 width: '100%',
@@ -92,7 +92,7 @@ export function Sidebar() {
           ) : (
             false
           )}
-          {userInfo.privilegies ? (
+          {userInfo?.privilegies ? (
             <Tab
               sx={{
                 width: '100%',

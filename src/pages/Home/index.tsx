@@ -12,36 +12,41 @@ import { useContexts } from '../../contexts/useContexts'
 import styles from './Home.module.scss'
 
 export function Home() {
-  const { componentToShowHome } = useContexts()
+  const { componentToShowHome, isLoading } = useContexts()
   return (
-    <div className={styles.homeWrapper}>
-      <Header />
-      <Sidebar />
-      <div className={styles.homeContainer}>
-        <div className={styles.content}>
-          <h1>.</h1>
-          {(() => {
-            switch (componentToShowHome) {
-              case 'one':
-                return <Agendados />
-              case 'two':
-                return <ManagementRg />
-              case 'three':
-                return <Holidays />
-              case 'four':
-                return <Polos />
-              case 'five':
-                return <Users />
-              case 'six':
-                return <Notices />
-              case 'seven':
-                return <CpfRegister />
-              default:
-                return <Agendados />
-            }
-          })()}
+    <>
+      {isLoading ? (
+        <h1>Carregando</h1>
+      ) : (
+        <div className={styles.homeWrapper}>
+          <Header />
+          <Sidebar />
+          <div className={styles.homeContainer}>
+            <div className={styles.content}>
+              {(() => {
+                switch (componentToShowHome) {
+                  case 'one':
+                    return <Agendados />
+                  case 'two':
+                    return <ManagementRg />
+                  case 'three':
+                    return <Holidays />
+                  case 'four':
+                    return <Polos />
+                  case 'five':
+                    return <Users />
+                  case 'six':
+                    return <Notices />
+                  case 'seven':
+                    return <CpfRegister />
+                  default:
+                    return <Agendados />
+                }
+              })()}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   )
 }
