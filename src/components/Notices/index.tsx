@@ -31,8 +31,8 @@ export function Notices() {
   const handlEditAlert = () => {
     api
       .put('/cadastraraviso', {
-        value: !!aviso,
-        header: aviso,
+        value: aviso,
+        header: header,
         ativado: ativacaoAviso,
       })
       .then(() => alert('Atualizado com sucesso'))
