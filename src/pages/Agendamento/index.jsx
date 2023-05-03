@@ -119,14 +119,14 @@ export function Agendamento() {
   }
 
   React.useEffect(() => {
-    Axios.get('https://api-agendamento-pmpa.herokuapp.com/getallpolos')
+    Axios.get('https://web-production-0ecd.up.railway.app/getallpolos')
       .then((res) => {
         setPolo(res.data)
       })
       .catch((err) => {
         console.log(err)
       })
-    Axios.get('https://api-agendamento-pmpa.herokuapp.com/getavisos')
+    Axios.get('https://web-production-0ecd.up.railway.app/getavisos')
       .then((res) => {
         setNewOpen(res.data[0].ativado)
         setAvisos(res.data[0].aviso)
@@ -142,7 +142,7 @@ export function Agendamento() {
     }${newData.$M + 1}/${newData.$y}`
     setNewData(null)
     setButtonLoading(true)
-    Axios.post('https://api-agendamento-pmpa.herokuapp.com/agend', {
+    Axios.post('https://web-production-0ecd.up.railway.app/agend', {
       values,
       value,
     })
