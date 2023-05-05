@@ -58,7 +58,7 @@ export default function Consultarvagas() {
     setDataShow(value)
     setAcao(2)
     await Axios.post(
-      'https://api-agendamento-pmpa.herokuapp.com/consultarhorarios',
+      'https://web-production-0ecd.up.railway.app/consultarhorarios',
       {
         value,
         poloEscolhido,
