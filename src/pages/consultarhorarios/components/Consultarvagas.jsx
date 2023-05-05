@@ -30,7 +30,7 @@ export default function Consultarvagas() {
   const [datasOcupadas, setDatasOcupadas] = React.useState([])
   const [loading, setLoading] = React.useState(true)
   React.useEffect(() => {
-    Axios.get('https://api-agendamento-pmpa.herokuapp.com/getallpolos')
+    Axios.get('https://web-production-0ecd.up.railway.app/getallpolos')
       .then((res) => {
         setPolo(res.data)
       })

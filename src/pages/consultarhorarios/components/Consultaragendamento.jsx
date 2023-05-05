@@ -25,7 +25,7 @@ export default function Consultaragendamento() {
     setBusca(2)
     setLoading(true)
     Axios.post(
-      'https://api-agendamento-pmpa.herokuapp.com/consultaragendamento',
+      'https://web-production-0ecd.up.railway.app/consultaragendamento',
       {
         cpf,
       },
