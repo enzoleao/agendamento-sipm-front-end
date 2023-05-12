@@ -16,6 +16,7 @@ export function DialogForm(props: any) {
       api.post('/inserirrgnovo', {
         novoRg: newCpf,
       })
+      window.location.replace('/dashboard')
       alert('Cadastrado com sucesso')
     } catch (err) {
       alert('Ocorreu algum erro')
