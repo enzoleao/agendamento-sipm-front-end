@@ -25,7 +25,7 @@ export default function Consultaragendamento() {
     setBusca(2)
     setLoading(true)
     Axios.post(
-      'https://web-production-0ecd.up.railway.app/consultaragendamento',
+      'https://web-production-fff25.up.railway.app/consultaragendamento',
       {
         cpf,
       },
