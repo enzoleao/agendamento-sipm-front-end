@@ -30,7 +30,7 @@ export default function Consultarvagas() {
   const [datasOcupadas, setDatasOcupadas] = React.useState([])
   const [loading, setLoading] = React.useState(true)
   React.useEffect(() => {
-    Axios.get('https://web-production-0ecd.up.railway.app/getallpolos')
+    Axios.get('https://web-production-fff25.up.railway.app/getallpolos')
       .then((res) => {
         setPolo(res.data)
       })
@@ -58,7 +58,7 @@ export default function Consultarvagas() {
     setDataShow(value)
     setAcao(2)
     await Axios.post(
-      'https://web-production-0ecd.up.railway.app/consultarhorarios',
+      'https://web-production-fff25.up.railway.app/consultarhorarios',
       {
         value,
         poloEscolhido,
