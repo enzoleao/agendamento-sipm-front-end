@@ -179,16 +179,26 @@ export function Agendamento() {
             style={{ width: '200px', height: '200px' }}
             alt="teste"
           ></img>
-          <div className="flex flex-col space-x-1 justify-center items-center font-sans">
+          <div className="flex flex-col gap-1 space-x-1 justify-center items-center font-sans">
             <h1 className="font-bold text-xl sm:text2-xl">
               Serviço de Identificação Policial Militar
             </h1>
             <h1 className="font-bold text-xl sm:text2-xl">SIPM</h1>
             <div className="flex ">
-              <h1 className="font-sans">
+              <p className="font-sans">
                 Deseja consultar datas com horários vagos?
-              </h1>
+              </p>
               <Link to="/consultarhorarios">
+                <div className="font-sans hover:text-blue-300 hover:underline underline text-red-600">
+                  Clique Aqui
+                </div>
+              </Link>
+            </div>
+            <div className="flex ">
+              <p className="font-sans">
+                Deseja consultar as documentações necessárias?
+              </p>
+              <Link to="https://docs.google.com/document/d/1cppX01uK4f3Po0IE_Y6V66LPKeU3uoqO/edit">
                 <div className="font-sans hover:text-blue-300 hover:underline underline text-red-600">
                   Clique Aqui
                 </div>
@@ -498,10 +508,10 @@ export function Agendamento() {
             </div>
           </div>
           <div className={`${styles.agendamentoFooterTeste} h-[4rem]`}>
-            <h1 className="text-center">
+            <h2 className="text-center">
               Subseção de Identificação da PMPA &copy; Todos os direitos
               reservados. Contato (91) 98516-2740
-            </h1>
+            </h2>
           </div>
         </div>
       )}
