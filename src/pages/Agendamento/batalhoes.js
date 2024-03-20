@@ -8,6 +8,9 @@ export const batalhoes = [
   { id: 7, name: 'DGO' },
   { id: 8, name: 'DAL' },
   { id: 9, name: 'CVP' },
+  { id: 146, name: 'CMS' },
+  { id: 147, name: 'FUNSAU' },
+  { id: 148, name: 'CMS' },
   /// / DGEC
   { id: 10, name: 'DGEC' },
   { id: 11, name: 'APM' },
